@@ -1,9 +1,8 @@
-import express, {Request, Response} from 'express'
+import express from 'express';
+import test from '../controllers/hello_world';
 
-const router: any = express.Router()
+const router: any = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
-    res.status(200).send("Hello World!");
-  })
+router.get("/",test);
 
- export default router
+export default router;

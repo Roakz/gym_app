@@ -4,7 +4,7 @@ import routes from './routes/app';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
-mongoose.connect('mongodb://localhost/gym_app,', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost/myDbNameHere,', {useNewUrlParser: true, useUnifiedTopology: true });
 
 const app: express.Express = express();
 const port: number = 8000;

@@ -8,7 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const app_1 = __importDefault(require("./routes/app"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
-mongoose_1.default.connect('mongodb://localhost/gym_app,', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose_1.default.connect('mongodb://localhost/myDbNameHere,', { useNewUrlParser: true, useUnifiedTopology: true });
 const app = express_1.default();
 const port = 8000;
 const db = mongoose_1.default.connection;

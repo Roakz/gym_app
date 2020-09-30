@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 
 mongoose.connect('mongodb://localhost/gym_app,', {useNewUrlParser: true, useUnifiedTopology: true });
 
-const app = express();
+const app: express.Express = express();
 const port: number = 8000;
 const db: any = mongoose.connection;
 

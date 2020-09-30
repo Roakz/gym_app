@@ -1,7 +1,7 @@
-import express from 'express';
+import express, {Router}from 'express';
 import test from '../controllers/hello_world';
 
-const router: any = express.Router();
+const router: Router = express.Router();
 
 router.get("/",test);
 

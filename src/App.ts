@@ -5,14 +5,19 @@ import userRouter from './routes/user';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
-mongoose.connect('mongodb://localhost/myDbNameHere,', {useNewUrlParser: true, useUnifiedTopology: true });
-
 const app: express.Express = express();
 const port: number = 8000;
-const db: any = mongoose.connection;
+const uri: string = 'mongodb://localhost:27017/gymApp';
 
-// tslint:disable-next-line: no-console
-db.on('error', console.error.bind('connection error'));
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, (err: any) => {
+  if (err) {
+    // tslint:disable-next-line: no-console
+    console.log(err.message);
+  } else {
+    // tslint:disable-next-line: no-console
+    console.log('\nDb connected!');
+  }
+});
 
 app.use(cors());
 app.use(bodyParser.json());

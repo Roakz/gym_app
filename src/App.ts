@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import routes from './routes/app';
+import userRouter from './routes/user';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', routes);
+app.use('/user', userRouter);
 
 app.listen(port,()=>{
   process.stdout.write(`Listening on port ${port}...`);

@@ -14,7 +14,7 @@ export const userIndex = (req: Request, res: Response):void => {
 
 // show
 export const getUser = (req: Request, res: Response):void => {
-    UserModel.find({_id: req.params.userId}, (err: any, result: any) => {
+    UserModel.findOne({_id: req.params.userId}, (err: any, result: any) => {
       if (err) {
           res.status(500).json({message: "Sorry! we had something go wrong!"});
         } else {
@@ -38,10 +38,28 @@ export const createUser = (req: Request, res: Response):void => {
 
 // update
 export const updateUser = (req: Request, res: Response):void => {
-    res.status(200).json({message: "updateUser"});
+  UserModel.updateOne({_id: req.params.userId}, req.body, (err: any, doc: any) => {
+    if (err) {
+      res.status(500).json({message: "Sorry! we had something go wrong! update declined!"});
+     } else {
+      res.status(200).json({message: `User updated: ${doc}`});
+     }
+  });
 };
 
 // delete
 export const deleteUser = (req: Request, res: Response):void => {
-    res.status(200).json({message: "deleteUser"});
+  UserModel.findOne({_id: req.params.userId}, (err: any, doc: any) => {
+    if (err) {
+      res.status(500).json({message: "Uh Oh! that document doesnt exist!"});
+    } else {
+      doc.remove((error: any) => {
+        if (error) {
+          res.status(500).json({message: "Uh Oh! something went wrong!"});
+        } else {
+          res.status(200).json({message: "user destroyed!"});
+        }
+      });
+    }
+  });
 };

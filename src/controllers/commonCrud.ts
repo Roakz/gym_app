@@ -19,18 +19,26 @@ export default class CommonCrud implements ICommonCrudController {
       });
     }
   }
+
+  // show
+  public Show = (req: Request, res: Response, arg: any):void => {
+    if (! arg.model) {
+      process.stderr.write('No Model Provided to commonCrud');
+      res.status(500).json({error: "No model provided for CRUD function."});
+    } else {
+      arg.model.findOne({_id: req.params.userId}, (err: any, result: any) => {
+        if (err) {
+          res.status(500).json({message: "Sorry! we had something go wrong!"});
+        } else {
+          res.status(200).json({user: result});
+        }
+      });
+    }
+  }
+
 }
 
-// show
-// export const getExercise = (req: Request, res: Response):void => {
-//     ExerciseModel.findOne({_id: req.params.userId}, (err: any, result: any) => {
-//       if (err) {
-//           res.status(500).json({message: "Sorry! we had something go wrong!"});
-//         } else {
-//           res.status(200).json({user: result});
-//         }
-//     });
-// };
+
 
 // // create
 // export const createExercise = (req: Request, res: Response):void => {

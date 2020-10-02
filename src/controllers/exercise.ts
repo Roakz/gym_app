@@ -10,19 +10,16 @@ export default class ExerciseController extends CommonCrud implements IExerciseC
   exerciseIndex = (req: Request, res: Response):void => {
     this.Index(req, res, {model: ExerciseModel});
   }
+
+  // show
+  getExercise = (req: Request, res: Response):void => {
+    this.Show(req, res, {model: ExerciseModel});
+  }
+
 }
 
 
-// // show
-// export const getExercise = (req: Request, res: Response):void => {
-//     ExerciseModel.findOne({_id: req.params.userId}, (err: any, result: any) => {
-//       if (err) {
-//           res.status(500).json({message: "Sorry! we had something go wrong!"});
-//         } else {
-//           res.status(200).json({user: result});
-//         }
-//     });
-// };
+
 
 // // create
 // export const createExercise = (req: Request, res: Response):void => {

@@ -1,15 +1,18 @@
 import {Request, Response} from 'express';
 import ExerciseModel from '../models/exercise';
+import {Index} from './commonCrud';
 
+// CHANGE TO CLASS THAT INHERITS FROM CRUD CONTROLLER.
 // index
 export const exerciseIndex = (req: Request, res: Response):void => {
-  ExerciseModel.find({}, (err:any, result: any) => {
-    if (err) {
-      res.status(500).json({message: "Sorry! we had something go wrong!"});
-    } else {
-        res.status(200).json({users: result});
-    }
-  });
+  Index(req, res, {model: ExerciseModel});
+  // ExerciseModel.find({}, (err:any, result: any) => {
+  //   if (err) {
+  //     res.status(500).json({message: "Sorry! we had something go wrong!"});
+  //   } else {
+  //       res.status(200).json({users: result});
+  //   }
+  // });
 };
 
 // show

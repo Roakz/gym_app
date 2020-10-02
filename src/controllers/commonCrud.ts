@@ -1,25 +1,27 @@
 import {Request, Response} from 'express';
+import {ICommonCrudController} from '../models/interfaces';
 
 // This will be the parent class that hold common crud functionality.
+export default class CommonCrud implements ICommonCrudController {
 
-// index
-export const Index = (req: Request, res: Response, arg: any):void => {
-  if (! arg.model) {
-    process.stderr.write('No Model Provided to commonCrud');
-    res.status(500).json({error: "No model provided for CRUD function."});
-  } else {
-    arg.model.find({}, (err:any, result: any) => {
-      if (err) {
-        res.status(500).json({message: "Sorry! we had something go wrong server side!"});
-      } else {
-        res.status(200).json({users: result});
-      }
-    });
+  // index
+  public Index = (req: Request, res: Response, arg: any):void => {
+    if (! arg.model) {
+      process.stderr.write('No Model Provided to commonCrud');
+      res.status(500).json({error: "No model provided for CRUD function."});
+    } else {
+      arg.model.find({}, (err:any, result: any) => {
+        if (err) {
+          res.status(500).json({message: "Sorry! we had something go wrong server side!"});
+        } else {
+          res.status(200).json({users: result});
+        }
+      });
+    }
   }
-};
+}
 
-
-// // show
+// show
 // export const getExercise = (req: Request, res: Response):void => {
 //     ExerciseModel.findOne({_id: req.params.userId}, (err: any, result: any) => {
 //       if (err) {

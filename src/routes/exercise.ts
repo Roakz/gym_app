@@ -8,7 +8,7 @@ const Exercise: IExerciseController = new ExerciseController();
 
 router.get('/', Exercise.exerciseIndex);
 router.get('/:userId', Exercise.getExercise);
-// router.post('/', createExercise);
+router.post('/', Exercise.createExercise);
 // router.put('/:userId', updateExercise);
 // router.delete('/:userId', deleteExercise);
 

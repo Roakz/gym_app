@@ -14,7 +14,7 @@ export default class CommonCrud implements ICommonCrudController {
         if (err) {
           res.status(500).json({message: "Sorry! we had something go wrong server side!"});
         } else {
-          res.status(200).json({users: result});
+          res.status(200).json({documents: result});
         }
       });
     }
@@ -36,22 +36,27 @@ export default class CommonCrud implements ICommonCrudController {
     }
   }
 
+  // create
+  Create = (req: Request, res: Response, arg: any):void => {
+    if (! arg.model) {
+      process.stderr.write('No Model Provided to commonCrud');
+      res.status(500).json({error: "No model provided for CRUD function."});
+    } else {
+      const newDoc = new arg.model(req.body);
+      newDoc.save((err: any) => {
+      if (err) {
+        res.status(500).json({message: "Sorry! we had something go wrong!"});
+      } else {
+        res.status(200).json({message: "Document created!"});
+      }
+     });
+    }
+  }
 }
 
 
 
-// // create
-// export const createExercise = (req: Request, res: Response):void => {
-//   const {firstName, lastName, email, mobilePhone} = req.body;
-//   const newUser = new ExerciseModel({firstName, lastName, email, mobilePhone});
-//   newUser.save((err: any) => {
-//    if (err) {
-//     res.status(500).json({message: "Sorry! we had something go wrong!"});
-//    } else {
-//     res.status(200).json({message: "Exercise created"});
-//    }
-//   });
-// };
+
 
 // // update
 // export const updateExercise = (req: Request, res: Response):void => {

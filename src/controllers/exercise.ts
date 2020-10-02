@@ -16,23 +16,15 @@ export default class ExerciseController extends CommonCrud implements IExerciseC
     this.Show(req, res, {model: ExerciseModel});
   }
 
+  // create
+  createExercise = (req: Request, res: Response):void => {
+    this.Create(req, res, {model: ExerciseModel});
+  }
 }
 
 
 
 
-// // create
-// export const createExercise = (req: Request, res: Response):void => {
-//   const {firstName, lastName, email, mobilePhone} = req.body;
-//   const newUser = new ExerciseModel({firstName, lastName, email, mobilePhone});
-//   newUser.save((err: any) => {
-//    if (err) {
-//     res.status(500).json({message: "Sorry! we had something go wrong!"});
-//    } else {
-//     res.status(200).json({message: "Exercise created"});
-//    }
-//   });
-// };
 
 // // update
 // export const updateExercise = (req: Request, res: Response):void => {

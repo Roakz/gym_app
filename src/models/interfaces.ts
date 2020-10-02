@@ -19,9 +19,11 @@ export interface IExercise extends Document{
 export interface ICommonCrudController {
   Index(req: Express.Request, res: Express.Response, arg: any): void;
   Show(req: Express.Request, res: Express. Request, arg: any): void;
+  Create(req: Express.Request, res: Express. Request, arg: any): void;
 }
 
 export interface IExerciseController {
   exerciseIndex(req: Express.Request, res: Express.Response): void;
   getExercise(req: Express.Request, res: Express.Response): void;
+  createExercise(req: Express.Request, res: Express.Response): void;
 }

@@ -7,3 +7,9 @@ export interface IUser extends Document{
   mobilePhone: string;
   authorisationRefs: [string];
 }
+
+export interface IExercise extends Document{
+  name: string;
+  description: string;
+  muscleRefs: [string];
+}

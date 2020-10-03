@@ -30,7 +30,7 @@ export default class CommonCrud implements ICommonCrudController {
         if (err) {
           res.status(500).json({message: "Sorry! we had something go wrong!"});
         } else {
-          res.status(200).json({user: result});
+          res.status(200).json({doc: result});
         }
       });
     }
@@ -83,7 +83,7 @@ export default class CommonCrud implements ICommonCrudController {
             if (error) {
               res.status(500).json({message: "Uh Oh! something went wrong!"});
             } else {
-              res.status(200).json({message: "exercise destroyed!"});
+              res.status(200).json({message: "document destroyed!"});
             }
           });
         }

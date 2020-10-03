@@ -7,6 +7,7 @@ export interface IUser extends Document{
   email: string;
   mobilePhone: string;
   authorisationRefs: [string];
+  workoutRefs: [string];
 }
 
 export interface IExercise extends Document{
@@ -15,7 +16,22 @@ export interface IExercise extends Document{
   muscleRefs: [string];
 }
 
-// controller
+interface IExerciseObj{
+  exerciseRef: string;
+  reps: string;
+}
+
+export interface IWorkout extends Document{
+  title: string;
+  description: string;
+  exerciseObj: [IExerciseObj];
+  imageSlug: string;
+  startDate: Date;
+  finishDate: Date;
+  trainerNotes: string;
+}
+
+// controllers
 export interface ICommonCrudController {
   Index(req: Express.Request, res: Express.Response, arg: any): void;
   Show(req: Express.Request, res: Express. Request, arg: any): void;
@@ -38,4 +54,12 @@ export interface IUserController {
   createUser(req: Express.Request, res: Express.Response): void;
   updateUser(req: Express.Request, res: Express.Response): void;
   deleteUser(req: Express.Request, res: Express.Response): void;
+}
+
+export interface IWorkoutController {
+  workoutIndex(req: Express.Request, res: Express.Response): void;
+  getWorkout(req: Express.Request, res: Express.Response): void;
+  createWorkout(req: Express.Request, res: Express.Response): void;
+  updateWorkout(req: Express.Request, res: Express.Response): void;
+  deleteWorkout(req: Express.Request, res: Express.Response): void;
 }

@@ -21,6 +21,7 @@ export interface ICommonCrudController {
   Show(req: Express.Request, res: Express. Request, arg: any): void;
   Create(req: Express.Request, res: Express. Request, arg: any): void;
   Update(req: Express.Request, res: Express. Request, arg: any): void;
+  Delete(req: Express.Request, res: Express. Request, arg: any): void;
 }
 
 export interface IExerciseController {
@@ -28,4 +29,5 @@ export interface IExerciseController {
   getExercise(req: Express.Request, res: Express.Response): void;
   createExercise(req: Express.Request, res: Express.Response): void;
   updateExercise(req: Express.Request, res: Express.Response): void;
+  deleteExercise(req: Express.Request, res: Express.Response): void;
 }

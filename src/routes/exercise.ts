@@ -10,6 +10,6 @@ router.get('/', Exercise.exerciseIndex);
 router.get('/:userId', Exercise.getExercise);
 router.post('/', Exercise.createExercise);
 router.put('/:docId', Exercise.updateExercise);
-// router.delete('/:userId', deleteExercise);
+router.delete('/:docId', Exercise.deleteExercise);
 
 export default router;

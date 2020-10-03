@@ -5,7 +5,7 @@ import {ICommonCrudController} from '../models/interfaces';
 export default class CommonCrud implements ICommonCrudController {
 
   // index
-  public Index = (req: Request, res: Response, arg: any):void => {
+  Index = (req: Request, res: Response, arg: any):void => {
     if (! arg.model) {
       process.stderr.write('No Model Provided to commonCrud');
       res.status(500).json({error: "No model provided for CRUD function."});
@@ -21,7 +21,7 @@ export default class CommonCrud implements ICommonCrudController {
   }
 
   // show
-  public Show = (req: Request, res: Response, arg: any):void => {
+  Show = (req: Request, res: Response, arg: any):void => {
     if (! arg.model) {
       process.stderr.write('No Model Provided to commonCrud');
       res.status(500).json({error: "No model provided for CRUD function."});
@@ -68,27 +68,26 @@ export default class CommonCrud implements ICommonCrudController {
       });
     }
   }
+
+  // delete
+  Delete = (req: Request, res: Response, args: any):void => {
+    if (! args.model) {
+      process.stderr.write('No Model Provided to commonCrud');
+      res.status(500).json({error: "No model provided for CRUD function."});
+    } else {
+      args.model.findOne({_id: req.params.docId}, (err: any, doc: any) => {
+        if (err) {
+          res.status(500).json({message: "Uh Oh! that document doesnt exist!"});
+        } else {
+          doc.remove((error: any) => {
+            if (error) {
+              res.status(500).json({message: "Uh Oh! something went wrong!"});
+            } else {
+              res.status(200).json({message: "exercise destroyed!"});
+            }
+          });
+        }
+      });
+    }
+  }
 }
-
-
-
-
-
-
-
-// // delete
-// export const deleteExercise = (req: Request, res: Response):void => {
-//   ExerciseModel.findOne({_id: req.params.userId}, (err: any, doc: any) => {
-//     if (err) {
-//       res.status(500).json({message: "Uh Oh! that document doesnt exist!"});
-//     } else {
-//       doc.remove((error: any) => {
-//         if (error) {
-//           res.status(500).json({message: "Uh Oh! something went wrong!"});
-//         } else {
-//           res.status(200).json({message: "exercise destroyed!"});
-//         }
-//       });
-//     }
-//   });
-// };

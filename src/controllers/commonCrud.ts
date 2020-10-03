@@ -43,13 +43,29 @@ export default class CommonCrud implements ICommonCrudController {
       res.status(500).json({error: "No model provided for CRUD function."});
     } else {
       const newDoc = new arg.model(req.body);
-      newDoc.save((err: any) => {
+      newDoc.save((err: any, doc: any) => {
       if (err) {
         res.status(500).json({message: "Sorry! we had something go wrong!"});
       } else {
-        res.status(200).json({message: "Document created!"});
+        res.status(200).json({message: `Document created: ${doc}`});
       }
      });
+    }
+  }
+
+  // update
+  Update = (req: Request, res: Response, args: any):void => {
+    if (! args.model) {
+      process.stderr.write('No Model Provided to commonCrud');
+      res.status(500).json({error: "No model provided for CRUD function."});
+    } else {
+      args.model.updateOne({_id: req.params.docId}, req.body, (err: any, doc: any) => {
+        if (err) {
+          res.status(500).json({message: "Sorry! we had something go wrong! update declined!"});
+         } else {
+          res.status(200).json({message: `Document updated: ${doc}`});
+         }
+      });
     }
   }
 }
@@ -58,16 +74,7 @@ export default class CommonCrud implements ICommonCrudController {
 
 
 
-// // update
-// export const updateExercise = (req: Request, res: Response):void => {
-//   ExerciseModel.updateOne({_id: req.params.userId}, req.body, (err: any, doc: any) => {
-//     if (err) {
-//       res.status(500).json({message: "Sorry! we had something go wrong! update declined!"});
-//      } else {
-//       res.status(200).json({message: `User updated: ${doc}`});
-//      }
-//   });
-// };
+
 
 // // delete
 // export const deleteExercise = (req: Request, res: Response):void => {

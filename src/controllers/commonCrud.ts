@@ -26,7 +26,7 @@ export default class CommonCrud implements ICommonCrudController {
       process.stderr.write('No Model Provided to commonCrud');
       res.status(500).json({error: "No model provided for CRUD function."});
     } else {
-      arg.model.findOne({_id: req.params.userId}, (err: any, result: any) => {
+      arg.model.findOne({_id: req.params.docId}, (err: any, result: any) => {
         if (err) {
           res.status(500).json({message: "Sorry! we had something go wrong!"});
         } else {

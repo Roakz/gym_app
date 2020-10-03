@@ -31,3 +31,11 @@ export interface IExerciseController {
   updateExercise(req: Express.Request, res: Express.Response): void;
   deleteExercise(req: Express.Request, res: Express.Response): void;
 }
+
+export interface IUserController {
+  userIndex(req: Express.Request, res: Express.Response): void;
+  getUser(req: Express.Request, res: Express.Response): void;
+  createUser(req: Express.Request, res: Express.Response): void;
+  updateUser(req: Express.Request, res: Express.Response): void;
+  deleteUser(req: Express.Request, res: Express.Response): void;
+}

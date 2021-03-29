@@ -8,6 +8,8 @@ export interface IUser extends Document{
   mobilePhone: string;
   authorisationRefs: [string];
   workoutRefs: [string];
+  password: string;
+  username: String;
 }
 
 export interface IExercise extends Document{
@@ -34,10 +36,10 @@ export interface IWorkout extends Document{
 // controllers
 export interface ICommonCrudController {
   Index(req: Express.Request, res: Express.Response, arg: any): void;
-  Show(req: Express.Request, res: Express. Request, arg: any): void;
-  Create(req: Express.Request, res: Express. Request, arg: any): void;
-  Update(req: Express.Request, res: Express. Request, arg: any): void;
-  Delete(req: Express.Request, res: Express. Request, arg: any): void;
+  Show(req: Express.Request, res: Express. Response, arg: any): void;
+  Create(req: Express.Request, res: Express.Response, arg: any): void;
+  Update(req: Express.Request, res: Express.Response, arg: any): void;
+  Delete(req: Express.Request, res: Express.Response, arg: any): void;
 }
 
 export interface IExerciseController {

@@ -4,8 +4,10 @@ import routes from './routes/app';
 import userRouter from './routes/user';
 import exerciseRouter from './routes/exercise';
 import workoutRouter from './routes/workout';
+import authenticationRouter from './routes/authentication';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+const passport = require('passport');
 
 const app: express.Express = express();
 const port: number = 8000;
@@ -24,7 +26,9 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, (err: 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
 app.use('/', routes);
+app.use('/authenticate', authenticationRouter);
 app.use('/user', userRouter);
 app.use('/exercise', exerciseRouter);
 app.use('/workout', workoutRouter);

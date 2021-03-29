@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 import express from "express";
 import cors from "cors";
 import routes from './routes/app';
@@ -7,8 +9,8 @@ import workoutRouter from './routes/workout';
 import authenticationRouter from './routes/authentication';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-const passport = require('passport');
 
+const passport = require('passport');
 const app: express.Express = express();
 const port: number = 8000;
 const uri: string = 'mongodb://localhost:27017/gymApp';

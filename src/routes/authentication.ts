@@ -1,6 +1,8 @@
-import express, {Router}from 'express';
+import express, {Router, Request, Response} from 'express';
+import { Mongoose } from 'mongoose';
 
 const router: Router = express.Router();
+const jwt = require('jsonwebtoken');
 
 const passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy;
@@ -22,11 +24,22 @@ import User from '../models/user';
         }
       ));
 
-router.post('/', passport.authenticate('local', { session: false }),
-// This only gets called if the passport middleware successfully authenticates.
-function(req, res) {
-  //   do some token stuff and send it to the client.
-  res.status(200).send()
-});
-
-export default router;
+  router.post('/', passport.authenticate('local', { session: false }),
+  // This only gets called if the passport middleware successfully authenticates.
+  function(req: Express.Request, res: Response) {
+      let userId: string;
+      let token: JsonWebKey;
+      let user: any;
+  
+      if (req.user)
+      {
+        user = req.user
+        userId = user._id;
+        token = jwt.sign({userId}, process.env.JWT_SECRET, {expiresIn: '86400'});
+        res.status(200).json({jwt_token: token})
+      } else {
+        res.status(500).send()
+      }
+  });
+  
+  export default router;

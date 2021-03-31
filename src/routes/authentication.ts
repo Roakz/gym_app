@@ -36,9 +36,8 @@ import User from '../models/user';
         user = req.user;
         userId = user._id;
         token = jwt.sign(
-            {userId: userId, role: "n/a", username: user.username},
-            process.env.JWT_SECRET,
-            {expiresIn: '86400'}
+            {userId: userId, role: user.role, username: user.username},
+            process.env.JWT_SECRET
           );
         res.status(200).json({jwt_token: token})
       } else {

@@ -9,6 +9,7 @@ import workoutRouter from './routes/workout';
 import authenticationRouter from './routes/authentication';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import {Authenticated} from './middleware';
 
 const passport = require('passport');
 const app: express.Express = express();
@@ -31,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use('/', routes);
 app.use('/authenticate', authenticationRouter);
+app.use(Authenticated);
 app.use('/user', userRouter);
 app.use('/exercise', exerciseRouter);
 app.use('/workout', workoutRouter);

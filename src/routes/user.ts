@@ -1,4 +1,4 @@
-import express, {Router, Request, Response, NextFunction}from 'express';
+import express, {Router}from 'express';
 import UserController from '../controllers/user';
 import {IUserController} from '../models/interfaces';
 import {isAdmin} from '../middleware';

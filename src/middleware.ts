@@ -11,7 +11,7 @@ export function isAdmin(req: Request, res: Response, next: NextFunction):  void 
   if (payload.role === "Admin") {
     next();
   } else {
-    res.status(403).send();
+    res.status(403).json({"message": "Not Authorised"});
   }
 };
 
@@ -20,12 +20,12 @@ export function Authenticated(req: Request, res: Response, next: NextFunction):v
     let token = req.headers.authorization?.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err: any) => {
       if (err) {
-        res.status(403);
+        res.status(403).json({"message": "Not Authorised", "err": err});
       } else {
         next();
       }
     })
   } else {
-    res.status(403).send();
+    res.status(403).json({"message": "Not Authorised"});
   }
 };

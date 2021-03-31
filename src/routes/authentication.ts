@@ -33,10 +33,10 @@ import User from '../models/user';
   
       if (req.user)
       {
-        user = req.user
+        user = req.user;
         userId = user._id;
         token = jwt.sign(
-            {userId: userId, role:"n/a", username: user.username},
+            {userId: userId, role: "n/a", username: user.username},
             process.env.JWT_SECRET,
             {expiresIn: '86400'}
           );

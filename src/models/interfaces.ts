@@ -6,10 +6,11 @@ export interface IUser extends Document{
   lastName: string;
   email: string;
   mobilePhone: string;
-  authorisationRefs: [string];
   workoutRefs: [string];
   password: string;
   username: String;
+  role: string;
+  passwordReset: boolean;
 }
 
 export interface IExercise extends Document{

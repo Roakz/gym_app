@@ -7,8 +7,9 @@ const UserSchema: Schema = new Schema ({
   username: { type: String, required: true},
   email: String,
   mobilePhone: String,
-  authorisationRefs: Array,
-  password: { type: String, required: true}
+  password: { type: String, required: true},
+  role: { type: String, required: true},
+  passwordReset: { type: Boolean, required: true }
 });
 
 UserSchema.methods.fullName = function(): string {
